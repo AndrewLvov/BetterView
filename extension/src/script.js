@@ -12,6 +12,7 @@ $(document).ready(function (){
             i+=1;
             console.log(i);
         }
+
         users.push(user);
     }
     console.log(users);
