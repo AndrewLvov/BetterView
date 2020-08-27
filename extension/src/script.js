@@ -41,57 +41,40 @@ $(document).ready(function (){
         }
     $(".slider-rating-max").hover(function (){
         for(let j = 0 ;j < $(".slider-rating-max").length; j++ ) {
-
             let slider = $(".slider-rating-max").eq(j);
             let handle = $('.slider-handle').eq(j);
             let value = slider.slider("value");
             let comment = $(".comment").eq(j);
+            let background_color = "white";
+            let color_font = "black";
             if (value < 0) {
-                handle.css({
-                    background: "red",
-                });
-                slider.css({
-                    background: "red",
-                });
+                background_color = "red";
                 comment.css('border', -value + 'px' + ' solid red');
             } else if (value > 0) {
                 if (value > 0 && value < 3) {
-                    handle.css({
-                        background: "yellow",
-                    });
-                    slider.css({
-                        background: "yellow",
-                    });
+                    background_color = "yellow";
                     comment.css('border', value + 'px' + ' solid yellow');
                 } else if (value >= 3 && value <= 4) {
-                    handle.css({
-                        background: "orange",
-                    });
-                    slider.css({
-                        background: "orange",
-                    });
+                    background_color = "orange";
                     comment.css('border', value + 'px' + ' solid orange');
                 } else if (value > 4) {
-                    handle.css({
-                        background: "green",
-                    });
-                    slider.css({
-                        background: "green",
-                    });
+                    background_color = "green";
                     comment.css('border', value + 'px' + ' solid green');
                 }
             }else {
-                handle.css({
-                    background: "white",
-                    color:"black",
-                });
-                slider.css({
-                    background: "white",
-                });
+                background_color = "white";
                 comment.css('border', value + 'px' + ' solid white');
             }
+            handle.css({
+                background: background_color,
+                color:color_font,
+            });
+            slider.css({
+                background: background_color,
+            });
         }
         });
+    
 
     console.log(users);
 });
