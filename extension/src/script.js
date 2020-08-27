@@ -3,12 +3,12 @@ $(document).ready(function (){
     let users = [];
     let comments = $(".comment");
     $('.bottom-line').css({
-        paddingBottom:20+"px",
+        paddingBottom:40+"px",
         paddingRight:20 +"px",
     })
     for (let i = 0; i < comments.length;i++){
         let user = {};
-        $('.bottom-line').eq(i).append("<div class='slider-rating-max ' >" +
+        $('.bottom-line').eq(i).append("<div class='slider-rating-max'>" +
             "<div class='slider-handle ui-slider-handle'></div>" +
             "</div>");
         let slider = $(".slider-rating-max").eq(i);
@@ -74,7 +74,14 @@ $(document).ready(function (){
             });
         }
         });
-    
+    $(".bottom-line").append("<div class='send-rating-button'>Оцінити</div>");
+    $(".send-rating-button").button().css({
+        borderRadius: 20 + "px",
+        marginLeft: "45%",
+        marginTop:"20px",
+        width: "100px",
+        fontSize: "10pt",
+    });
 
     console.log(users);
 });
