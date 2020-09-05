@@ -85,9 +85,10 @@ $(document).ready(function (){
         fontSize: "10pt",
     });
     $(".send-rating-button").click(function (e, obj) {
-        $(".slider-rating-max , .send-rating-button").hide(1000);
-        
+        $(this).hide(1000);
+        $(this).parent().find($(".slider-rating-max")).hide(1000);
     });
+
 
     console.log(users);
 });
