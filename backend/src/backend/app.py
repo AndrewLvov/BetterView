@@ -2,14 +2,16 @@ from importlib import import_module
 import os
 
 from flask_login.login_manager import LoginManager
-from flask import Flask, redirect, url_for
+from flask_login import login_user, logout_user, login_required
+from flask import Flask, redirect, url_for, render_template
 from flask_graphql import GraphQLView
 from flask_sqlalchemy import SQLAlchemy
 from flask_dance.contrib.google import make_google_blueprint, google
+from oauthlib.oauth2 import TokenExpiredError
 
 
 flask_app = Flask(__name__)
-config_module = import_module(os.environ.get('CONFIG_MODULE', 'config'))
+config_module = import_module(os.environ.get('CONFIG_MODULE', 'backend.config'))
 ConfigObject = getattr(config_module, 'ConfigObject')
 flask_app.config.from_object(ConfigObject())
 flask_app.debug = True
@@ -39,16 +41,28 @@ def init_app(app):
     def index():
         if not google.authorized:
             return redirect(url_for("google.login"))
-        resp = google.get("/oauth2/v1/userinfo")
+        try:
+            resp = google.get("/oauth2/v1/userinfo")
+        except TokenExpiredError:
+            return redirect(url_for("google.login"))
+
         assert resp.ok, resp.text
         auth_email = resp.json()['email']
         user = User.query.filter(User.email == auth_email).first()
         if not user:
             user = User(name=resp.json()['given_name'], email=auth_email)
             db.session.add(user)
-        return "You are {email} on Google".format(email=resp.json()["email"])
+            db.session.commit()
 
-        # return render_template('index.html')
+        login_user(user)
+
+        return render_template('index.html')
+
+    @app.route("/logout")
+    @login_required
+    def logout():
+        logout_user()
+        return redirect('/')
 
     app.add_url_rule(
         "/graphql", view_func=GraphQLView.as_view(
