@@ -9,9 +9,9 @@ from backend.app import db
 class Rating(db.Model):
     __tablename__ = 'rating'
     rater_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
-    rated_by_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
+    rated_id = Column(Integer, ForeignKey('user.id'), primary_key=True)
     rater = relationship("User", foreign_keys=[rater_id], backref="given_ratings")
-    rated_by = relationship("User", foreign_keys=[rated_by_id], backref="received_ratings")
+    rated = relationship("User", foreign_keys=[rated_id], backref="received_ratings")
     value = Column(Integer)
 
 
@@ -21,8 +21,3 @@ class User(UserMixin, db.Model):
     name = Column(String)
     dou_id = Column(String)
     email = Column(String)
-
-
-
-
-
