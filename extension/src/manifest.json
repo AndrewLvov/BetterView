@@ -9,7 +9,7 @@
     {
       "matches": ["https://dou.ua/forums/topic/*/"],
       "js": ["jquery-3.5.1.js","/js/jquery-ui.min.js","script.js"],
-      "css" : ["/css/jquery-ui.min.css"]
+      "css" : ["/css/jquery-ui.min.css","/css/style.css"]
     }
   ],
   "version": "1.0.0",

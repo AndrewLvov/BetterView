@@ -2,13 +2,10 @@ $(document).ready(function (){
     $("head").append("<link rel='stylesheet' href='/css/jquery-ui.min.css'>");
     let users = [];
     let comments = $(".comment");
-    $('.bottom-line').css({
-        paddingBottom:40+"px",
-        paddingRight:20 +"px",
-    })
     $('.bottom-line').append("<div class='slider-rating-max'>" +
         "<div class='slider-handle ui-slider-handle'></div>" +
         "</div>");
+
     for (let i = 0; i < comments.length;i++) {
         let user = {};
         let rating = 0;
@@ -76,19 +73,11 @@ $(document).ready(function (){
 
         }
     });
+
     $(".bottom-line").append("<div class='send-rating-button'>Оцінити</div>");
-    $(".send-rating-button").button().css({
-        borderRadius: 20 + "px",
-        marginLeft: "45%",
-        marginTop:"20px",
-        width: "100px",
-        fontSize: "10pt",
-    });
     $(".send-rating-button").click(function (e, obj) {
         $(this).hide(1000);
         $(this).parent().find($(".slider-rating-max")).hide(1000);
-    });
-
-
+    }).button();
     console.log(users);
 });
