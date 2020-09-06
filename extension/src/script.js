@@ -9,8 +9,6 @@ $(document).ready(function (){
         "</div>");
 
     for (let i = 0; i < comments.length;i++) {
-        let user = {};
-        let rating = 0;
         let slider = $(".slider-rating-max").eq(i);
         let handle = $('.slider-handle').eq(i);
         slider.slider({
@@ -59,8 +57,9 @@ $(document).ready(function (){
 
             }
         });
+        let rating = 0;
         $(".b-post-author").eq(i).append("<span><b>Рейтинг:"+ rating +"</b></span>");
-        user = {
+       let user = {
             "name": $(".comment > .b-post-author > .avatar").eq(i).text().trim(),
             "text": $(".comment > .comment_text ").eq(i).text().trim(),
             "url": $(".comment > .b-post-author > .avatar").eq(i).attr("href"),
@@ -68,7 +67,6 @@ $(document).ready(function (){
         if (user["name"] === $(".comment > .b-post-author > .avatar").eq(i + 1).text().trim()) {
             user["text_2"] = $(".comment > .comment_text").eq(i + 1).text().trim();
             i += 1;
-            console.log(i);
         }
         users.push(user);
         if (slider.slider("value") < -2) {
