@@ -48,6 +48,9 @@ $(document).ready(function (){
             let background = "";
             if (value < 0) {
                 background = "red";
+                if(value < -2){
+                    comment.hide(1000);
+                }
             } else if (value > 0) {
                 if (value > 0 && value < 3) {
                     background = "yellow";
@@ -59,10 +62,7 @@ $(document).ready(function (){
             }else {
                 background = "white";
             }
-            if(value < -2){
-                comment.hide(1000);
-            }
-            if(background != ""){
+            if(background){
                 handle.css("background", background);
                 handle.parent().css("background", background);
                 let string_border = value + " solid " + background;
