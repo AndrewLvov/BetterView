@@ -23,35 +23,35 @@ $(document).ready(function (){
                 handle.text(ui.value);
             },
             change: function( event, ui ) {
-                let slider_value =  ui.value;
-                let slider_handle = $(ui.handle);
+                let sliderValue =  ui.value;
+                let sliderHandle = $(ui.handle);
                 let comment = handle.parent().parent().parent();
                 let background = null;
-                if (slider_value < 0) {
+                if (sliderValue < 0) {
                     background = "red";
-                    if(slider_value < -2){
+                    if(sliderValue < -2){
                         comment.fadeOut(1000);
                     }
-                } else if (slider_value > 0) {
-                    if (slider_value > 0 && slider_value < 3) {
+                } else if (sliderValue > 0) {
+                    if (sliderValue > 0 && sliderValue < 3) {
                         background = "yellow";
-                    } else if (slider_value >= 3 && slider_value <= 4) {
+                    } else if (sliderValue >= 3 && sliderValue <= 4) {
                         background = "orange";
-                    } else if (slider_value > 4) {
+                    } else if (sliderValue > 4) {
                         background = "green";
                     }
                 }else {
                     background = "white";
                 }
-                slider_handle.css("background", background);
-                slider_handle.parent().css("background", background);
-                if(slider_value > 0){
+                sliderHandle.css("background", background);
+                sliderHandle.parent().css("background", background);
+                if(sliderValue > 0){
                     comment.css({
-                        border: slider_value +"px solid " + background,
+                        border: sliderValue +"px solid " + background,
                     });
                 }else {
                     comment.css({
-                        border: -slider_value +"px solid " + background,
+                        border: -sliderValue +"px solid " + background,
                     });
                 }
 
