@@ -47,9 +47,16 @@ $(document).ready(function (){
                 }
                 slider_handle.css("background", background);
                 slider_handle.parent().css("background", background);
-                comment.css({
-                    border: slider_value +"px solid " + background,
-                });
+                if(slider_value > 0){
+                    comment.css({
+                        border: slider_value +"px solid " + background,
+                    });
+                }else {
+                    comment.css({
+                        border: -slider_value +"px solid " + background,
+                    });
+                }
+
             }
         });
         $(".b-post-author").eq(i).append("<span><b>Рейтинг:"+ rating +"</b></span>");
