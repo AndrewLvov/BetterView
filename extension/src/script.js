@@ -21,6 +21,37 @@ $(document).ready(function (){
             },
             slide: function (event, ui) {
                 handle.text(ui.value);
+            },
+            change: function( event, ui ) {
+                let value =  ui.value;
+                let handle = $(ui.handle);
+                let comment = handle.parent().parent().parent();
+                let background = "";
+                if (value < 0) {
+                    background = "red";
+                    if(value < -2){
+                        comment.hide(1000);
+                    }
+                } else if (value > 0) {
+                    if (value > 0 && value < 3) {
+                        background = "yellow";
+                    } else if (value >= 3 && value <= 4) {
+                        background = "orange";
+                    } else if (value > 4) {
+                        background = "green";
+                    }
+                }else {
+                    background = "white";
+                }
+                if(background){
+                    handle.css("background", background);
+                    handle.parent().css("background", background);
+                    let string_border = value + " solid " + background;
+                    comment.css({
+                        border: string_border,
+                    });
+                }
+
             }
         });
         $(".b-post-author").eq(i).append("<span><b>Рейтинг:"+ rating +"</b></span>");
@@ -39,41 +70,6 @@ $(document).ready(function (){
             $(".comment").eq(i).hide(1000);
         }
     }
-
-    $( ".slider-rating-max" ).slider({
-        change: function( event, ui ) {
-            let value =  ui.value;
-            let handle = $(ui.handle);
-            let comment = handle.parent().parent().parent();
-            let background = "";
-            if (value < 0) {
-                background = "red";
-                if(value < -2){
-                    comment.hide(1000);
-                }
-            } else if (value > 0) {
-                if (value > 0 && value < 3) {
-                    background = "yellow";
-                } else if (value >= 3 && value <= 4) {
-                    background = "orange";
-                } else if (value > 4) {
-                    background = "green";
-                }
-            }else {
-                background = "white";
-            }
-            if(background){
-                handle.css("background", background);
-                handle.parent().css("background", background);
-                let string_border = value + " solid " + background;
-                comment.css({
-                    border: string_border,
-                });
-            }
-
-        }
-    });
-
     $(".bottom-line").append("<div class='send-rating-button'>Оцінити</div>");
     $(".send-rating-button").click(function (e, obj) {
         $(this).hide(1000);
