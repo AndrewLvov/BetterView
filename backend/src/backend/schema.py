@@ -45,7 +45,7 @@ class CreateUpdateRating(ClientIDMutation):
         if not rating:
             rating = RatingModel(rated=rated_user, rater=current_user)
 
-        rating.value = input['rating_value']
+        rating.value = input['rating']
         db.session.add(rating)
         db.session.commit()
 
