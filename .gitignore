@@ -131,8 +131,4 @@ dmypy.json
 # JetBrains
 .idea
 
-.sqlite3
-/backend/src/local_config.py
-/venv2/
-/venv3/
-/venv4/
+
