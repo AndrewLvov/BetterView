@@ -82,6 +82,16 @@ $(document).ready(function (){
         $(this).parent()
             .find($(".show_comment"))
             .fadeIn(2000);
+        $.ajax({url: "http://127.0.0.1:5000/graphql",
+                  contentType: "application/json",type:'POST',
+                  data: JSON.stringify({ query:"{allUsers(sort : [NAME_ASC, ID_ASC]) {edges {node {id name douId} } } }",
+                      "variables":null,
+                      "operationName":null,
+                  }),
+                  success: function(result) {
+                     console.log(JSON.stringify(result.data))
+                  }
+               });
     }).button();
     $(".show_comment").click(function (){
         $(this).fadeOut(1000);
@@ -91,14 +101,6 @@ $(document).ready(function (){
         $(this).parent()
             .find($(".slider-rating-max , .send-rating-button"))
             .fadeIn(2000);
-        $.ajax({url: "http://127.0.0.1:5000/graphql",
-                  contentType: "application/json",type:'POST',
-                  data: JSON.stringify({ query:`{allUsers}`,
-                  }),
-                  success: function(result) {
-                     console.log(JSON.stringify(result.data))
-                  }
-               });
     });
     console.log(users);
 });
