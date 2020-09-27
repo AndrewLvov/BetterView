@@ -1,5 +1,5 @@
 $(document).ready(function (){
-    // $("head").append("<link rel='stylesheet' href='css/jquery-ui.min.css'>");
+    $("head").append("<link rel='stylesheet' href='css/jquery-ui.min.css'>");
     let users = [];
     let comments = $(".comment");
     $(".bottom-line").append("<div class='show_comment'>Вернути</div>");
