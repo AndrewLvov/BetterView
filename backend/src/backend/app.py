@@ -21,11 +21,8 @@ login_manager.init_app(flask_app)
 
 db = SQLAlchemy(flask_app)
 
-
 CORS(flask_app)
-cors = CORS(flask_app,resources={
-    r"/*": {"origins": ConfigObject.CORS_ALLOWED_ORIGINS}
-})
+
 
 def init_app(app):
     from backend.schema import schema
