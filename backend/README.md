@@ -34,6 +34,7 @@ Use API values in your config file:
         ...
         GOOGLE_OAUTH_CLIENT_ID = "<SOME ID YOU'VE GOT>.apps.googleusercontent.com"
         GOOGLE_OAUTH_CLIENT_SECRET = "<YOUR GOOGLE SECRET KEY>"
+        CORS_ALLOWED_ORIGINS =["http://127.0.0.1:5000/graphql","http://127.0.0.1:5000"]
 
 
 ## Database
