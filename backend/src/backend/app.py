@@ -8,6 +8,7 @@ from flask_graphql import GraphQLView
 from flask_sqlalchemy import SQLAlchemy
 from flask_dance.contrib.google import make_google_blueprint, google
 from oauthlib.oauth2 import TokenExpiredError
+from flask_cors import CORS
 
 
 flask_app = Flask(__name__)
@@ -19,6 +20,8 @@ login_manager = LoginManager()
 login_manager.init_app(flask_app)
 
 db = SQLAlchemy(flask_app)
+
+CORS(flask_app)
 
 
 def init_app(app):
