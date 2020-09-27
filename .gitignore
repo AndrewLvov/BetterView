@@ -131,4 +131,5 @@ dmypy.json
 # JetBrains
 .idea
 
+.sqlite3
 
